@@ -50,7 +50,7 @@ def mars_news(browser):
         return None, None
     return news_title, news_p
 
-def featured_image(browser)
+def featured_image(browser):
     # Visit URL
     url = 'https://spaceimages-mars.com'
     browser.visit(url)
@@ -66,7 +66,7 @@ def featured_image(browser)
     # Add try/execpt for error handling
     try:
     # Find the relative image url
-    img_url_rel = img_soup.find('img', class_='fancybox-image').get('src')
+      img_url_rel = img_soup.find('img', class_='fancybox-image').get('src')
 
     except AttributeError:
         return None
@@ -109,7 +109,7 @@ def hemispheres(browser):
         hemi_data['img_url'] = url + hemi_data['img_url']
     
         # Append hemisphere object to list
-        hemisphere_image_urls.append(hemisphere)
+        hemisphere_image_urls.append(hemi_data)
         # Finally, we navigate backwards
         browser.back()
 
@@ -122,7 +122,7 @@ def scrape_hemisphere(html_text):
     #adding try/except for error handling
     try:
         title_elem = hemi_soup.find("h2", class_="title").get_text()
-        sample_elem = hemi_soup.fin g("a", text="Sample").get("href")
+        sample_elem = hemi_soup.find("a", text="Sample").get("href")
 
     except AttributeError:
         #Image error will return None, for better front-end handling
@@ -137,7 +137,7 @@ def scrape_hemisphere(html_text):
     return hemispheres
 
 
-if __name__ =="__main__"
+if __name__ =="__main__":
 
     # If running as script, print scraped data
     print(scrape_all())
